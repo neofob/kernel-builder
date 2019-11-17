@@ -1,0 +1,10 @@
+---
+- name: stretch
+  box: debian/stretch64
+  memory: 8192
+  cpus: 4
+
+- name: bionic
+  box: ubuntu/bionic64
+  memory: 8192
+  cpus: 4
