@@ -9,7 +9,9 @@ nodes = YAML.load_file('nodes.yml')
 
 $script = <<-SCRIPT
 sudo apt-get update
-sudo apt-get install -yq python3 python3-setuptools python3-apt python3-pip mc vim-nox
+sudo apt-get dist-upgrade -yq
+sudo apt-get install -yq python3-minimal python3-apt python3-pip mc vim-nox
+sudo apt-get install -yq build-essential bison flex libssl-dev libelf-dev bc
 date > /etc/vagrant_provisioned_at
 SCRIPT
 
