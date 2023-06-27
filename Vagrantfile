@@ -10,7 +10,7 @@ $script = <<-SCRIPT
 sudo apt-get update
 sudo apt-get dist-upgrade -yq
 sudo apt-get install -yq python3-minimal python3-apt python3-pip mc vim-nox
-sudo apt-get install -yq chrony build-essential bison flex libssl-dev libelf-dev bc
+sudo apt-get install -yq chrony build-essential bison flex libssl-dev libelf-dev bc lz4 debhelper
 date > /etc/vagrant_provisioned_at
 SCRIPT
 
