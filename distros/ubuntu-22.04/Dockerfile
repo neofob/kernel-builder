@@ -10,6 +10,12 @@ RUN apt-get -yq update && apt-get dist-upgrade -yq \
     && apt-get -yq install --no-install-recommends  ${PKGS} \
     && mkdir -p /opt/src
 
+RUN cd /opt/src \
+    && git clone https://github.com/neofob/tscripts \
+    && cd /usr/local/sbin \
+    && ln -s /opt/src/tscripts/misc/*.sh .
+
+
 RUN apt-get autoremove -yq \
     && apt-get autoclean \
     && rm -fr /tmp/* /var/lib/apt/lists/*
