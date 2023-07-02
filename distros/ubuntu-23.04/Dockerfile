@@ -23,4 +23,4 @@ RUN apt-get autoremove -yq \
     && apt-get autoclean \
     && rm -fr /tmp/* /var/lib/apt/lists/*
 
-WORKDIR /opt/src
+WORKDIR /opt/src/linux
