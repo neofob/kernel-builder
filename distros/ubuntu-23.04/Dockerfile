@@ -8,7 +8,7 @@ ENV PKGS="bc bison build-essential chrony cpio debhelper flex git kmod libelf-de
 libssl-dev lz4 mc python3-apt python3-minimal python3-pip rsync vim-nox xz-utils zstd" \
     DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -yq update && apt-get dist-upgrade -yq \
+RUN apt-get -yq update && apt-get upgrade && apt-get dist-upgrade -yq \
     && apt-get -yq install --no-install-recommends  ${PKGS} \
     && mkdir -p /opt/src
 
