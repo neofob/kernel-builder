@@ -4,7 +4,7 @@ services:
   kernel-builder:
     container_name: kernel-builder
     hostname: kernel-builder
-    image: neofob/kernel-builder:22.04
+    image: neofob/kernel-builder:24.04
     build:
       context: .
     restart: "no"
