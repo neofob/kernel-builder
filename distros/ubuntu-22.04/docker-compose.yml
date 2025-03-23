@@ -1,5 +1,4 @@
 ---
-version: '3.7'
 services:
   kernel-builder:
     container_name: kernel-builder
@@ -15,14 +14,9 @@ services:
     volumes:
       - /tmp:/tmp:rw
       - ${HOME}/src/linux:/opt/src/linux:rw
-      - /boot/config-6.4.1:/tmp/config-current-linux:ro
+      - ${KERNEL_CONFIG}:/tmp/config-current-linux:ro
     command:
       - build_kernel.sh
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-
 
 # TODO: do something like "/boot/config-`uname -r`" for OLD_CONFIG
 #      docker run -it --rm --user 1000:1000 -v /tmp:/tmp -v /home/vagrant/src/linux:/home/kernel-builder/linux neofob/kernel-builder:23.04
