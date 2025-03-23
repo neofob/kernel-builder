@@ -8,16 +8,14 @@ ENV PKGS="bc bison build-essential chrony cpio debhelper flex git kmod libelf-de
 libssl-dev lz4 mc python3-apt python3-minimal python3-pip rsync vim-nox xz-utils zstd" \
     DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -yq update && apt-get upgrade -yq && apt-get dist-upgrade -yq \
+RUN apt-get -yq update && apt-get dist-upgrade -yq \
     && apt-get -yq install --no-install-recommends  ${PKGS} \
+    && apt-get autoclean && apt-get autoremove -yq \
     && mkdir -p /opt/src && rm -fr /tmp/* /var/lib/lists/*
 
 RUN cd /opt/src \
     && git clone https://github.com/neofob/tscripts \
     && cd /usr/local/sbin \
     && ln -s /opt/src/tscripts/misc/*.sh .
-
-RUN apt-get autoremove -yq \
-    && apt-get autoclean
 
 WORKDIR /opt/src/linux

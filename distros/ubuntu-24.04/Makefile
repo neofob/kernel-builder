@@ -5,7 +5,5 @@
 DOCKER_NAME ?= neofob/kernel-builder
 DOCKER_TAG ?= 24.04
 
-
 docker:
-	docker build -t $(DOCKER_NAME):$(DOCKER_TAG) .
-
+	docker build --no-cache -t $(DOCKER_NAME):$(DOCKER_TAG) .
