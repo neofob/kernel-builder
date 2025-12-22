@@ -11,7 +11,7 @@ services:
     environment:
       - OLD_CONFIG=/tmp/config-current-linux
       - ARTIFACT=/tmp/kernel
-      - CPUS=16
+      - CPUS=32
     volumes:
       - /tmp:/tmp:rw
       - /tmp/linux:/opt/src/linux:rw
