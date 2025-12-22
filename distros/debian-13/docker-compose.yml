@@ -1,0 +1,23 @@
+---
+services:
+  kernel-builder:
+    container_name: kernel-builder
+    hostname: kernel-builder
+    image: neofob/kernel-builder:${DOCKER_TAG}
+    build:
+      context: .
+    restart: "no"
+    user: "1000:1000"
+    environment:
+      - OLD_CONFIG=/tmp/config-current-linux
+      - ARTIFACT=/tmp/kernel
+      - CPUS=16
+    volumes:
+      - /tmp:/tmp:rw
+      - /tmp/linux:/opt/src/linux:rw
+      - ${KERNEL_CONFIG}:/tmp/config-current-linux:ro
+    command:
+      - build_kernel.sh
+
+# TODO: do something like "/boot/config-`uname -r`" for OLD_CONFIG
+#      docker run -it --rm --user 1000:1000 -v /tmp:/tmp -v /home/vagrant/src/linux:/home/kernel-builder/linux neofob/kernel-builder:23.04
