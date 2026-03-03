@@ -1,7 +1,7 @@
 ---
 services:
   kernel-builder:
-    container_name: kernel-builder
+    container_name: trixie-kernel-builder
     hostname: kernel-builder
     image: neofob/kernel-builder:${DOCKER_TAG}
     build:
@@ -13,8 +13,9 @@ services:
       - ARTIFACT=/tmp/kernel
       - CPUS=32
     volumes:
-      - /tmp:/tmp:rw
-      - /tmp/linux:/opt/src/linux:rw
+      - ${KERNEL_TEMP}:/tmp:rw
+      - ${KERNEL_SRC}:/opt/src/linux:rw
+      - ${KERNEL_OUTPUT_DIR:-${GL_KERNEL_OUTPUT_DIR}}/debian-13:/tmp/kernel:rw
       - ${KERNEL_CONFIG}:/tmp/config-current-linux:ro
     command:
       - build_kernel.sh
