@@ -14,7 +14,7 @@ services:
     volumes:
       - ${KERNEL_TEMP}:/tmp:rw
       - ${KERNEL_SRC}:/opt/src/linux:rw
-      - ${KERNEL_OUTPUT_DIR:-${GL_KERNEL_OUTPUT_DIR}}/ubuntu-22.04:/tmp/kernel:rw
+      - ${KERNEL_OUTPUT_DIR:-${GL_KERNEL_OUTPUT_DIR}}/ubuntu-24.04:/tmp/kernel:rw
       - ${KERNEL_CONFIG}:/tmp/config-current-linux:ro
     command:
       - build_kernel.sh
