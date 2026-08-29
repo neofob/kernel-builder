@@ -5,6 +5,10 @@ Using Docker to build Linux Kernel
 
 **author:** _tuan t. pham_
 
+## Table of Contents
+* [Requirements](#Requirements)
+* [Quick Start](#QuickStart)
+
 
 ## Requirements
 * `docker`
@@ -12,12 +16,18 @@ Using Docker to build Linux Kernel
 * about 8GB disk free on /tmp, preferably `tmpfs`
   * entry in `/etc/fstab`: `tmpfs /tmp tmpfs size=8G,noatime,defaults 0 0`
 
-## Quick Start
-### 1. Creating local git mirror
+## QuickStart
+### 1.1 Creating local git mirror
 ```bash
 mkdir -p /mnt/mirror
 cd /mnt/mirror
 git clone --mirror git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux.git
+```
+
+### 1.2 Update local git mirror with new stuff from upstream
+```bash
+cd /mnt/mirror/linux.git
+git fetch --prune
 ```
 
 ### 2. Creating local Docker builder image for Debian and Ubuntu
