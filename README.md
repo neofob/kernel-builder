@@ -1,6 +1,6 @@
-Using Docker to build Linxu Kernel
+Using Docker to build Linux Kernel
 ==================================
-*A QuickWay to build the chosen branch of Linux Kernel based on existing config.*
+*A QuickWay to build a chosen branch of Linux Kernel based on existing config.*
 
 
 **author:** _tuan t. pham_
@@ -41,8 +41,8 @@ time GL_LOCAL_MIRROR=//mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./s
 
 ### 3.2. Build locally using gitlab-local to mimic the way it is built in gitlab
 ```bash
-gitlab-ci-local --env .gitlab-ci-local check
-gitlab-ci-local --env .gitlab-ci-local build
+gitlab-ci-local package:check
+gitlab-ci-local package:build
 ```
 
 [0]: git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
