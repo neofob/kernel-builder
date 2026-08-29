@@ -53,10 +53,11 @@ time GL_LOCAL_MIRROR=/mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./sc
 time GL_LOCAL_MIRROR=//mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./scripts/01-build-kernel.sh
 ```
 
-### 3.2 Building locally using `gitlab-ci-local` to mimic the way it is built in gitlab
+### 3.2 Building locally using [`gitlab-ci-local`][1] to mimic the way it is built in gitlab
 ```bash
 gitlab-ci-local package:check
 gitlab-ci-local package:build
 ```
 
 [0]: git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+[1]: https://github.com/firecow/gitlab-ci-local
