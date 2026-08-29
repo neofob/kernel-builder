@@ -11,7 +11,7 @@ default:
 
 variables:
   GITLAB_CI_ENV: 1
-  GITLAB_BUILD_IMAGE: "docker:29.4-dind"
+  GITLAB_BUILD_IMAGE: "docker:29.7.2-dind"
 
 ###### reusable rules ######
 ############################
