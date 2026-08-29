@@ -10,15 +10,16 @@ Using Docker to build Linux Kernel
 * [Quick Start](#QuickStart)
   * [1.1 Creating local git mirror](#11-creating-local-git-mirror)
   * [1.2 Updating local git mirror](#12-updating-local-git-mirror)
-  * [2. Creating local Docker builder image](#2-creating-local-docker-builder-image-for-debian-and-ubuntu)
+  * [2. Creating local Docker builder image](#2-creating-local-docker-builder-image)
   * [3.1 Building locally with local mirror](#31-building-locally-with-local-mirror)
-  * [3.2 Building locally with local mirror](#32-building-locally-using-gitlab-ci-local-to-mimic-the-way-it-is-built-in-gitlab)
+  * [3.2 Building locally with local mirror](#32-building-locally-using-gitlab-ci-local)
 
 ## Requirements
 * `docker`
 * `docker-compose`
-* about 8GB disk free on /tmp, preferably `tmpfs`
-  * entry in `/etc/fstab`: `tmpfs /tmp tmpfs size=8G,noatime,defaults 0 0`
+* about 8GB disk free on `/tmp`, preferably `tmpfs` filetype for speed
+  * entry in `/etc/fstab`
+    * `tmpfs /tmp tmpfs size=8G,noatime,defaults 0 0`
 
 ## QuickStart
 ### 1.1 Creating local git mirror
@@ -34,7 +35,8 @@ cd /mnt/mirror/linux.git
 git fetch --prune
 ```
 
-### 2 Creating local Docker builder image for Debian and Ubuntu
+### 2 Creating local Docker builder image
+*Creating local Docker builder image for Debian and Ubuntu*
 ```bash
 # You only need to run once unless you want to build new one with updated based/new packages in
 # the distro
@@ -53,7 +55,8 @@ time GL_LOCAL_MIRROR=/mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./sc
 time GL_LOCAL_MIRROR=//mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./scripts/01-build-kernel.sh
 ```
 
-### 3.2 Building locally using [`gitlab-ci-local`][1] to mimic the way it is built in gitlab
+### 3.2 Building locally using `gitlab-ci-local`
+*Building locally using [`gitlab-ci-local`][1]to mimic the way it is built in gitlab*
 ```bash
 gitlab-ci-local package:check
 gitlab-ci-local package:build
