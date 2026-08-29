@@ -11,7 +11,7 @@ default:
 
 variables:
   GITLAB_CI_ENV: 1
-  GITLAB_BUILD_IMAGE: "docker:29.3.0-rc.1-dind"
+  GITLAB_BUILD_IMAGE: "docker:29.4-dind"
 
 ###### reusable rules ######
 ############################
@@ -89,6 +89,8 @@ package:check:
 ##### build ######
 ############################
 package:build:
+  services:
+    - docker:dind
   image:
     name: ${GITLAB_BUILD_IMAGE}
     docker:
@@ -116,4 +118,8 @@ package:build:
         - "*.md"
       when: never
     - when: always
+  artifacts:
+    paths:
+      - /tmp/kernel
+    expire_in: 1 week
   needs: [package:check]

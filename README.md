@@ -1,34 +1,48 @@
-Using vagrant box(es) to build kernel
-====================================
-#WIP
+Using Docker to build Linxu Kernel
+==================================
+*A QuickWay to build the chosen branch of Linux Kernel based on existing config.*
 
+
+**author:** _tuan t. pham_
+
+
+## Requirements
+* `docker`
+* `docker-compose`
+* about 8GB disk free on /tmp, preferably `tmpfs`
+  * entry in `/etc/fstab`: `tmpfs /tmp tmpfs size=8G,noatime,defaults 0 0`
+
+## Quick Start
+### 1. Creating local git mirror
+```bash
+mkdir -p /mnt/mirror
+cd /mnt/mirror
+git clone --mirror git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux.git
 ```
-# Use ansible/contrib/inventory/vagrant.py
-ansible stretch -i ./vagrant.py -m ping
+
+### 2. Creating local Docker builder image for Debian and Ubuntu
+```bash
+# You only need to run once unless you want to build new one with updated based/new packages in
+# the distro
+for d in distros/debian-13 distro/ubuntu-24.04; do
+  cd $d
+  docker-compose build
+  cd -
+done
 ```
 
-Check out the upstream [`Linux Kernel`][0] source code to here. It will appear as
-`/vagrant/linux` inside the vagrant machine.
-
-~Example workflow:~
+### 3.1. Build locally with local mirror
+* `/mnt/mirror/linux.git`: local Linux kernel git mirror repository
+```bash
+# It is about 18-22min on a AMD 9950X machine
+time GL_LOCAL_MIRROR=/mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./scripts/00-checkout-kernel.sh
+time GL_LOCAL_MIRROR=//mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./scripts/01-build-kernel.sh
 ```
-$ vagrant up bionic
-$ vagrant ssh -c "KERNEL_SRC=/vagrant/linux BUILD_OUTPUT=/vagrant/build /vagrant/build_kernel.sh"
+
+### 3.2. Build locally using gitlab-local to mimic the way it is built in gitlab
+```bash
+gitlab-ci-local --env .gitlab-ci-local check
+gitlab-ci-local --env .gitlab-ci-local build
 ```
-
-*Update:* Using virtualbox shared filesystem does not work. It does not support `mmap` calls, which
-are used by the tool-chains in compiling the kernel.
-
-Alternative approaches:
-* Use a custom vagrant box that has big enough partition (the default image is
-20GB) to store the checkout git source code and output build. A 32GB filesystem
-should be sufficient for now.
-* The host machine provides 32GB of RAM to the vagrant box. Then we can mount
-a `tmpfs` with the size about 27GB to store the checked out source and output
-objects.
-
-
-The built `.deb` packages are at CWD.
-
 
 [0]: git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
