@@ -8,7 +8,11 @@ Using Docker to build Linux Kernel
 ## Table of Contents
 * [Requirements](#Requirements)
 * [Quick Start](#QuickStart)
-
+  * [1.1 Creating local git mirror](#11-creating-local-git-mirror)
+  * [1.2 Updating local git mirror](#12-updating-local-git-mirror)
+  * [2. Creating local Docker builder image](#2-creating-local-docker-builder-image-for-debian-and-ubuntu)
+  * [3.1 Building locally with local mirror](#31-building-locally-with-local-mirror)
+  * [3.2 Building locally with local mirror](#32-building-locally-using-gitlab-ci-local-to-mimic-the-way-it-is-built-in-gitlab)
 
 ## Requirements
 * `docker`
@@ -24,13 +28,13 @@ cd /mnt/mirror
 git clone --mirror git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux.git
 ```
 
-### 1.2 Update local git mirror with new stuff from upstream
+### 1.2 Updating local git mirror
 ```bash
 cd /mnt/mirror/linux.git
 git fetch --prune
 ```
 
-### 2. Creating local Docker builder image for Debian and Ubuntu
+### 2 Creating local Docker builder image for Debian and Ubuntu
 ```bash
 # You only need to run once unless you want to build new one with updated based/new packages in
 # the distro
@@ -41,7 +45,7 @@ for d in distros/debian-13 distro/ubuntu-24.04; do
 done
 ```
 
-### 3.1. Build locally with local mirror
+### 3.1 Building locally with local mirror
 * `/mnt/mirror/linux.git`: local Linux kernel git mirror repository
 ```bash
 # It is about 18-22min on a AMD 9950X machine
@@ -49,7 +53,7 @@ time GL_LOCAL_MIRROR=/mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./sc
 time GL_LOCAL_MIRROR=//mnt/mirror/linux.git GL_KERNEL_OUTPUT_DIR=/tmp/kernel ./scripts/01-build-kernel.sh
 ```
 
-### 3.2. Build locally using gitlab-local to mimic the way it is built in gitlab
+### 3.2 Building locally using `gitlab-ci-local` to mimic the way it is built in gitlab
 ```bash
 gitlab-ci-local package:check
 gitlab-ci-local package:build
