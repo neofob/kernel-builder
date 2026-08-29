@@ -12,7 +12,7 @@ Using Docker to build Linux Kernel
   * [1.2 Updating local git mirror](#12-updating-local-git-mirror)
   * [2. Creating local Docker builder image](#2-creating-local-docker-builder-image)
   * [3.1 Building locally with local mirror](#31-building-locally-with-local-mirror)
-  * [3.2 Building locally with local mirror](#32-building-locally-using-gitlab-ci-local)
+  * [3.2 Building locally using `gitlab-ci-local`](#32-building-locally-using-gitlab-ci-local)
 
 ## Requirements
 * `docker`
