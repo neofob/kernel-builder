@@ -1,6 +1,6 @@
 Using Docker to build Linux Kernel
 ==================================
-*A QuickWay to build a chosen branch of Linux Kernel based on existing config.*
+*A QuickWay to build a chosen `branch/hash/tag` of Linux Kernel based on the existing config file.*
 
 
 **author:** _tuan t. pham_
