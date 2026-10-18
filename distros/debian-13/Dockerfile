@@ -2,7 +2,7 @@ FROM debian:trixie-slim
 
 LABEL maintainer "tuan t. pham" <tuan@vt.edu>
 
-ENV PKGS="bc bison build-essential chrony cpio debhelper flex gawk git kmod libelf-dev \
+ENV PKGS="bc bison build-essential ccache chrony cpio debhelper flex gawk git kmod libelf-dev \
 libssl-dev lz4 mc python3-apt python3-minimal python3-pip rsync vim-nox xz-utils zstd libncurses-dev libdw-dev" \
     DEBIAN_FRONTEND=noninteractive
 
