@@ -11,7 +11,9 @@ services:
     environment:
       - OLD_CONFIG=/tmp/config-current-linux
       - ARTIFACT=/tmp/kernel
-      - CC="ccache gcc"
+      - CCACHE=ccache gcc
+    tmpfs:
+      - /home/builder/.cache/ccache:size=2G,mode=1777
     volumes:
       - ${KERNEL_TEMP}:/tmp:rw
       - ${KERNEL_SRC}:/opt/src/linux:rw
