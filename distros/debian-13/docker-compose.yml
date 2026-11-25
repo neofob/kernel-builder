@@ -13,7 +13,7 @@ services:
       - ARTIFACT=/tmp/kernel
       - CCACHE=ccache gcc
     tmpfs:
-      - /home/builder/.cache/ccache:size=2G,mode=1777
+      - /home/builder/.cache/ccache:size=5G,mode=1777
     volumes:
       - ${KERNEL_TEMP}:/tmp:rw
       - ${KERNEL_SRC}:/opt/src/linux:rw

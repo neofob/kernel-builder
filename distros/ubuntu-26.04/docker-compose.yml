@@ -1,7 +1,7 @@
 ---
 services:
   kernel-builder:
-    container_name: ubuntu-kernel-builder
+    container_name: ubuntu26-kernel-builder
     hostname: kernel-builder
     image: neofob/kernel-builder:${DOCKER_TAG}
     build:
@@ -12,6 +12,8 @@ services:
       - OLD_CONFIG=/tmp/config-current-linux
       - ARTIFACT=/tmp/kernel
       - CCACHE=ccache gcc
+    tmpfs:
+      - /home/builder/.cache/ccache:size=5G,mode=1777
     volumes:
       - ${KERNEL_TEMP}:/tmp:rw
       - ${KERNEL_SRC}:/opt/src/linux:rw
